@@ -17,7 +17,7 @@ namespace WordCounter.Controllers
             RepeatCounter newCounter = new RepeatCounter();
             newCounter.SetUserCheckWord(Request.Form["word"]);
             newCounter.SetUserSentence(Request.Form["sentence"]);
-            newCounter.CreateWordTally();
+            newCounter.SetWordTally();
             return View(newCounter);
         }
 

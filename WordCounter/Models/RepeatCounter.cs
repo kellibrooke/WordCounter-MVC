@@ -1,4 +1,5 @@
 using System;
+using System.Text;
 using System.Collections.Generic;
 
 namespace WordCounter.Models
@@ -13,9 +14,15 @@ namespace WordCounter.Models
         public void SetUserSentence(string userSentence)
         {
             string lowerCaseSentence = userSentence.ToLower();
-            char[] badChars = { ',', '.', '~', '`', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '+', '=' };
-            string betterSentence = lowerCaseSentence.Trim(badChars);
-            _userSentence = betterSentence;
+            StringBuilder punctFree = new StringBuilder();
+            foreach (char letter in lowerCaseSentence)
+            {
+                if(!char.IsPunctuation(letter))
+                {
+                punctFree.Append(letter);
+                }
+            }
+            _userSentence = punctFree.ToString();
         }
 
         public string GetUserSentence()
@@ -26,9 +33,15 @@ namespace WordCounter.Models
         public void SetUserCheckWord(string userWord)
         {
           string lowerCaseWord = userWord.ToLower();
-          char[] badChars = { ',', '.', '~', '`', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '+', '=' };
-          string betterWord = lowerCaseWord.Trim(badChars);
-          _userCheckWord = betterWord;
+          StringBuilder punctFree = new StringBuilder();
+          foreach (char letter in lowerCaseWord)
+          {
+              if(!char.IsPunctuation(letter))
+              {
+              punctFree.Append(letter);
+              }
+          }
+          _userCheckWord = punctFree.ToString();
         }
 
         public string GetUserCheckWord()
@@ -41,7 +54,7 @@ namespace WordCounter.Models
             return _wordTally;
         }
 
-        public void CreateWordTally()
+        public void SetWordTally()
         {
             string[] wordArray = _userSentence.Split(' ');
             foreach (string word in wordArray)
