@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using WordCounter.Models;
 
 namespace WordCounter.Controllers
 {
@@ -10,10 +11,14 @@ namespace WordCounter.Controllers
             return View();
         }
 
-        [HttpGet("/results")]
+        [HttpPost("/results")]
         public ActionResult Results()
         {
-            return View();
+            RepeatCounter newCounter = new RepeatCounter();
+            newCounter.SetUserCheckWord(Request.Form["word"]);
+            newCounter.SetUserSentence(Request.Form["sentence"]);
+            newCounter.CreateWordTally();
+            return View(newCounter);
         }
 
     }
