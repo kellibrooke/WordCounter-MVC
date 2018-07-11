@@ -6,6 +6,8 @@ namespace WordCounter.Models
 {
     public class RepeatCounter
     {
+        private string _originalSentence;
+        private string _originalWord;
         private string _userSentence;
         private string _userCheckWord;
 
@@ -13,6 +15,7 @@ namespace WordCounter.Models
 
         public void SetUserSentence(string userSentence)
         {
+            _originalSentence = userSentence;
             string lowerCaseSentence = userSentence.ToLower();
             StringBuilder punctFree = new StringBuilder();
             foreach (char letter in lowerCaseSentence)
@@ -25,6 +28,16 @@ namespace WordCounter.Models
             _userSentence = punctFree.ToString();
         }
 
+        public string GetOriginalSentence()
+        {
+            return _originalSentence;
+        }
+
+        public string GetOriginalWord()
+        {
+            return _originalWord;
+        }
+
         public string GetUserSentence()
         {
             return _userSentence;
@@ -32,6 +45,7 @@ namespace WordCounter.Models
 
         public void SetUserCheckWord(string userWord)
         {
+          _originalWord = userWord;
           string lowerCaseWord = userWord.ToLower();
           StringBuilder punctFree = new StringBuilder();
           foreach (char letter in lowerCaseWord)
