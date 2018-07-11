@@ -30,6 +30,19 @@ namespace WordCounter.Tests
         Assert.AreEqual(expected, actual);
       }
 
-
+      [TestMethod]
+      public void GetSetWordTally_CreatesWordTally_Int()
+      {
+        RepeatCounter newTest = new RepeatCounter();
+        string testUserSentence = "it isn't fair is it?";
+        string testUserWord = "it";
+        newTest.SetUserCheckWord(testUserWord);
+        newTest.SetUserSentence(testUserSentence);
+        newTest.SetWordTally();
+        Dictionary<string, int> returnedTally = newTest.GetWordTally();
+        int actual = returnedTally["it"];
+        int expected = 2;
+        Assert.AreEqual(expected, actual);
+      }
     }
 }
