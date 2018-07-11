@@ -9,6 +9,28 @@ namespace WordCounter.Tests
     public class RepeatCounterTest
     {
       [TestMethod]
+      public void GetOriginalSentence_GetsOriginalSentence_String()
+      {
+        RepeatCounter newTest = new RepeatCounter();
+        string testUserInput = "A test. for a TEST";
+        newTest.SetUserSentence(testUserInput);
+        string actual = newTest.GetOriginalSentence();
+        string expected = "A test. for a TEST";
+        Assert.AreEqual(expected, actual);
+      }
+
+      [TestMethod]
+      public void GetOriginalWord_GetsOriginalWord_String()
+      {
+        RepeatCounter newTest = new RepeatCounter();
+        string testUserInput = "te.St";
+        newTest.SetUserCheckWord(testUserInput);
+        string actual = newTest.GetOriginalWord();
+        string expected = "te.St";
+        Assert.AreEqual(expected, actual);
+      }
+
+      [TestMethod]
       public void GetSetUserSentence_ValidatesConvertsUserSentence_String()
       {
         RepeatCounter newTest = new RepeatCounter();
