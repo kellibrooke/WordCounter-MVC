@@ -44,5 +44,19 @@ namespace WordCounter.Tests
         int expected = 2;
         Assert.AreEqual(expected, actual);
       }
+
+      [TestMethod]
+      public void WordRepeatAmount_CountsNumberOfRepeatsOfUserCheckWord_Int()
+      {
+        RepeatCounter newTest = new RepeatCounter();
+        string testUserSentence = "it isn't fair is it?";
+        string testUserWord = "it";
+        newTest.SetUserCheckWord(testUserWord);
+        newTest.SetUserSentence(testUserSentence);
+        newTest.SetWordTally();
+        int expected = 2;
+        int actual = newTest.WordRepeatAmount();
+        Assert.AreEqual(expected, actual);
+      }
     }
 }
